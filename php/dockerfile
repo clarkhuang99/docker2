@@ -1,0 +1,15 @@
+#image 名稱
+FROM bitnami/php-fpm:7.4.29-debian-10-r43
+#創造者
+MAINTAINER clarkhuang
+#  設定時區
+ENV TZ=Asia/Tapiei
+RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
+#  更新系統及增加php外掛mysqli pdo_mysql等
+RUN apt-get update && apt-get install -y \
+        git apt-utils libzip-dev \
+        libfreetype6-dev \
+        libjpeg62-turbo-dev \
+        libpng-dev \
+&& apt-get install -y php php-fpm php-pdo-mysql php-mbstring php-mysqli php-gd php-zip php-json php-curl php-common \
+&& rm -r /var/lib/apt/lists
