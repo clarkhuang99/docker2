@@ -1,0 +1,23 @@
+version: '3.7'
+services:
+  web:
+    image: ubuntu/apache2
+    ports:
+      - "80:80"
+    volumes:
+#      - ./sites-enable:/etc/apache2/sites-enabled
+      - ./sites-available/:/etc/apache2/sites-available
+      - /var/www/html:/var/www/html
+
+
+# 這是連結單一檔案寫法        - ./conf/httpd.conf:/usr/local/apache2/conf/httpd.conf
+
+
+#    command: echo "hello world"
+
+  php:
+    image: php:7.4-fpm
+    ports:
+      - "9000:9000"
+    volumes:
+      - /var/www/html:/var/www/html

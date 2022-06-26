@@ -1,0 +1,17 @@
+version: '3.7'
+services:
+  web:
+    image: ubuntu/apache2
+    ports:
+      - "80:80"
+#    volumes:
+#      - ./extra:/usr/local/apache2/conf/extra:rw
+#      - ./conf/httpd.conf:/usr/local/apache2/conf/httpd.conf
+
+  php:
+    image: php:7.4-fpm
+    ports:
+      - "9000:9000"
+    volumes:
+      - ./html:/var/www/html:rw
+
